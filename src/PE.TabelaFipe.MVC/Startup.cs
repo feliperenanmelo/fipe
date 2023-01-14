@@ -45,6 +45,8 @@ namespace PE.TabelaFipe.MVC
                 .AddPolicyHandler(PollyExtensions.EsperarTentar())
                 .AddTransientHttpErrorPolicy(policy => policy.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
+            services.AddMemoryCache();
+
             services.AddControllersWithViews();
         }
 

@@ -7,7 +7,7 @@
 
 <form asp-action="Index" method="post">
     <div class="form-group">
-        <label class="control-label">Selecione uma marca</label>
+        <label class="control-label">Selecione o que deseja pesquisar</label>
         <select asp-for="Marca" class="form-control">
             <option>Carro</option>
             <option>Moto</option>
@@ -27,7 +27,7 @@
     @if (Model.Modelos.Count > 0)
     {
         <div class="form-group">
-            <label class="control-label">Selecione uma marca</label>
+            <label class="control-label">Selecione um modelo</label>
             <select asp-for="CodigoModelo" class="form-control" asp-items="@(new SelectList(Model.Modelos, "Codigo","Nome"))">
                 <option></option>
             </select>
@@ -36,7 +36,7 @@
     @if (Model.ModelosPorAno.Count > 0)
     {
         <div class="form-group">
-            <label class="control-label">Selecione uma marca</label>
+            <label class="control-label">Selecione o ano</label>
             <select asp-for="CodigoAno" class="form-control" asp-items="@(new SelectList(Model.ModelosPorAno, "Codigo","Nome"))">
                 <option></option>
             </select>
@@ -49,26 +49,66 @@
 
 @if(Model.Fipe != null)
 {
-    <table class="table table-hover">
-        <thead class="thead-dark">
+<table class="table table-hover">
+    <thead class="bg-light text-black-50">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fipe.TipoVeiculo)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Fipe.TipoVeiculo)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fipe.Marca)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Fipe.Marca)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fipe.Modelo)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Fipe.Modelo)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fipe.AnoModelo)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Fipe.AnoModelo)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fipe.Combustivel)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Fipe.Combustivel)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fipe.MesReferencia)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Fipe.MesReferencia)
+            </th>
+        </tr>
+        <thead class="bg-danger text-white">
             <tr>
-                <th hidden>
-                    @Html.DisplayNameFor(model => model.Fipe.CodigoFipe)
-                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Fipe.Valor)
                 </th>
+                <th>
+                    @Html.DisplayFor(model => model.Fipe.Valor)
+                </th>
             </tr>
         </thead>
-        <tbody>          
-            <tr>
-                <td hidden>
-                    @Html.DisplayFor(model => model.Fipe.CodigoFipe)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.Fipe.Valor)
-                </td>
-            </tr>          
-        </tbody>
-    </table>
+    </thead>  
+</table>
 }

@@ -49,7 +49,7 @@ namespace PE.TabelaFipe.MVC.Controllers
             }
             if(codigoMarca > default(int))
             {
-                var modelos = _mapper.Map<List<ModeloViewModel>>(await _tabelaFipeService.ObterModelos(marca, codigoModelo));
+                var modelos = _mapper.Map<List<ModeloViewModel>>(await _tabelaFipeService.ObterModelos(marca, codigoMarca));
                 fipeDTO.Modelos = modelos;
                 fipeDTO.CodigoMarca = codigoMarca;
             }
@@ -61,15 +61,9 @@ namespace PE.TabelaFipe.MVC.Controllers
             }
             if (!string.IsNullOrWhiteSpace(codigoAno))
             {
-                var modelosPorAno = _mapper.Map<List<ModeloViewModel>>(await _tabelaFipeService.ObterModelosPorAno(marca, codigoMarca, codigoModelo));
-                fipeDTO.ModelosPorAno = modelosPorAno;
-                fipeDTO.CodigoAno = codigoAno;
-            }
-            if (codigoMarca > default(int) && codigoModelo > default(int) && !string.IsNullOrWhiteSpace(codigoAno))
-            {
                 var preco = _mapper.Map<FipeViewModel>(await _tabelaFipeService.ObterPreco(marca, codigoMarca, codigoModelo, codigoAno));
-                fipeDTO.Fipe = preco;                
-            }
+                fipeDTO.Fipe = preco;
+            }         
 
             return View("Index",fipeDTO);
         }
